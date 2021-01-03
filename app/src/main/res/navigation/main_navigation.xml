@@ -7,29 +7,29 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.nerostarx.thebackpack.WelcomeFragment"
+        android:name="com.nerostarx.thebackpack.view.ui.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/action_welcomeFragment_to_selectionFragment"
+            android:id="@+id/to_selection_action"
             app:destination="@id/selectionFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/selectionFragment"
-        android:name="com.nerostarx.thebackpack.SelectionFragment"
+        android:name="com.nerostarx.thebackpack.view.ui.SelectionFragment"
         android:label="fragment_selection"
         tools:layout="@layout/fragment_selection" >
         <action
-            android:id="@+id/action_selectionFragment_to_resultFragment"
+            android:id="@+id/to_result_action"
             app:destination="@id/resultFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.nerostarx.thebackpack.ResultFragment"
+        android:name="com.nerostarx.thebackpack.view.ui.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" />
 </navigation>

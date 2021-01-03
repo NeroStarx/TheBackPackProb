@@ -11,6 +11,8 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_TheBackPack)
         setContentView(R.layout.activity_main)
 
-        val navHost: NavHostFragment = findViewById(R.id.nav_host)
+        val navHostFragment = supportFragmentManager
+                .findFragmentById(R.id.nav_host) as NavHostFragment
+        val navController = navHostFragment.navController
     }
 }
