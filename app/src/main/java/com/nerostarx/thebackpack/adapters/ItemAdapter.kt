@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.nerostarx.thebackpack.R
 import com.nerostarx.thebackpack.model.Item
+import com.nerostarx.thebackpack.viewModel.MainViewModel
 
-class ItemAdapter(private val ItemsList: ArrayList<Item>):RecyclerView.Adapter<ItemAdapter.ItemHolder>() {
+class ItemAdapter(private val viewModel: MainViewModel)
+    :RecyclerView.Adapter<ItemAdapter.ItemHolder>() {
 
     class ItemHolder(itemView : View):RecyclerView.ViewHolder(itemView) {
 
@@ -24,5 +26,5 @@ class ItemAdapter(private val ItemsList: ArrayList<Item>):RecyclerView.Adapter<I
 
     }
 
-    override fun getItemCount(): Int = ItemsList.size
+    override fun getItemCount(): Int = 20
 }

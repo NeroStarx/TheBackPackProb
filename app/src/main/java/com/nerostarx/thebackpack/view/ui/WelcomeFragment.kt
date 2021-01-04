@@ -30,15 +30,18 @@ class WelcomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val confirmButton: Button = view.findViewById(R.id.confirm_name_button)
         val nameInput: EditText = view.findViewById(R.id.name_input_layout)
+        val packSizeInput: EditText = view.findViewById(R.id.packsize_input_layout)
 
         confirmButton.setOnClickListener{
-            storeName(nameInput.text.toString())
+            storeName(nameInput.text.toString(),packSizeInput.text.toString())
         }
     }
 
-    private fun storeName(name: String) {
-        if(name.isNotEmpty()){
+    private fun storeName(name: String,packSize:String) {
+        if(name.isNotEmpty() && packSize.toInt() > 0){
             viewModel.putName(name)
+            viewModel.putSize(packSize.toInt())
+
             val navController = findNavController()
             navController.navigate(R.id.to_selection_action)
         }else{

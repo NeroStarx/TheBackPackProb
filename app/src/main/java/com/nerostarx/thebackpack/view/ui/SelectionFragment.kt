@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.nerostarx.thebackpack.R
+import com.nerostarx.thebackpack.adapters.ItemAdapter
 import com.nerostarx.thebackpack.viewModel.MainViewModel
 
 
@@ -30,7 +33,14 @@ class SelectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val confirmButton: Button = view.findViewById(R.id.confirm_items_button)
         val title: TextView = view.findViewById(R.id.selection_title)
+
         val itemsRecycler: RecyclerView = view.findViewById(R.id.items_recycler)
+        val gridLayoutManager =  GridLayoutManager(requireContext(),4, HORIZONTAL, false)
+        val adapter = ItemAdapter(viewModel)
+
+        itemsRecycler.setHasFixedSize(false)
+        itemsRecycler.layoutManager = gridLayoutManager
+        itemsRecycler.adapter = adapter
 
         title.text = "HELLO ${viewModel.getName()}, PLEASE CHOOSE YOUR DESIRED ITEMS."
 
