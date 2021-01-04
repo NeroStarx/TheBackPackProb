@@ -50,7 +50,10 @@ class SelectionFragment : Fragment() {
     }
 
     private fun processSelection() {
-        val navController = findNavController()
-        navController.navigate(R.id.to_result_action)
+        viewModel.processSelection().also {
+            val navController = findNavController()
+            navController.navigate(R.id.to_result_action)
+        }
+
     }
 }
