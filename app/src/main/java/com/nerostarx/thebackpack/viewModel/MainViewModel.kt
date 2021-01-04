@@ -9,6 +9,7 @@ class MainViewModel: ViewModel() {
 
     private var name : String = ""
     private var backPackSize: Int = 0
+    private var selectedItemsList: ArrayList<Item> = ArrayList()
     private var itemsList: ArrayList<Item> = arrayListOf(
             Item("BRUSH", 5,5),
             Item("PALETTE", 5,7),
@@ -17,10 +18,7 @@ class MainViewModel: ViewModel() {
             Item("PENCIL", 5,3),
             Item("RUBBER", 5,2),
             Item("WATER", 15,10),
-            Item("TORCH", 10,8)
-    )
-    private var selectedItemsList: ArrayList<Item> = ArrayList()
-    private var bestPossibility: Possibility? = null
+            Item("TORCH", 10,8))
 
     fun putName(newName: String){
         name = newName
@@ -31,10 +29,11 @@ class MainViewModel: ViewModel() {
     }
 
     fun updateSelectedItemsList(item: Item, mode: String){
-        if(mode == "delete")
+        if(mode == "delete"){
             selectedItemsList.remove(item)
-        else
+        } else{
             selectedItemsList.add(item)
+        }
     }
 
     fun getName() = name
@@ -43,10 +42,5 @@ class MainViewModel: ViewModel() {
 
     fun getSelectedItemsList() = selectedItemsList
 
-    fun processSelection(){
-        val possibilities = AppCoreReactor.remplirSac(selectedItemsList,backPackSize, Possibility())
-        bestPossibility = AppCoreReactor.getBestPossibility(possibilities)
-    }
-
-    fun getBestPossibility() = bestPossibility
+    fun getPackSize() = backPackSize
 }

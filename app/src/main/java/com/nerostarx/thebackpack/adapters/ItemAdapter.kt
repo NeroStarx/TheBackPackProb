@@ -30,6 +30,13 @@ class ItemAdapter(private val viewModel: MainViewModel)
         val item = viewModel.getItems()[position]
 
         holder.itemName.text = item.name
+        if(!viewModel.getSelectedItemsList().contains(item)){
+            holder.itemImage.setImageResource(R.drawable.ic_launcher_foreground)
+            holder.itemName.alpha = 1F
+        }else{
+            holder.itemImage.setImageResource(R.drawable.ic_check)
+            holder.itemName.alpha = 0.5F
+        }
 
         holder.itemImage.setOnClickListener {
             if(viewModel.getSelectedItemsList().contains(item)){
