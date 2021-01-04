@@ -29,17 +29,21 @@ object AppCoreReactor {
     }
 
     fun getBestPossibility(possibilities : ArrayList<Possibility>):Possibility?{
-        if(possibilities.isEmpty()){
-            return null
-        }else if(possibilities.size == 1){
-            return possibilities[0]
-        }else{
-            if(possibilities[1].totalValue < possibilities[0].totalValue){
-                possibilities.removeAt(1)
-            }else{
-                possibilities.removeAt(0)
+        when {
+            possibilities.isEmpty() -> {
+                return null
             }
-            return getBestPossibility(possibilities)
+            possibilities.size == 1 -> {
+                return possibilities[0]
+            }
+            else -> {
+                if(possibilities[1].totalValue < possibilities[0].totalValue){
+                    possibilities.removeAt(1)
+                }else{
+                    possibilities.removeAt(0)
+                }
+                return getBestPossibility(possibilities)
+            }
         }
     }
 }

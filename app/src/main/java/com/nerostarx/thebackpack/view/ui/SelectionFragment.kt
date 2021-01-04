@@ -8,12 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.nerostarx.thebackpack.R
+import com.nerostarx.thebackpack.viewModel.MainViewModel
 
 
 class SelectionFragment : Fragment() {
+
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +32,15 @@ class SelectionFragment : Fragment() {
         val title: TextView = view.findViewById(R.id.selection_title)
         val itemsRecycler: RecyclerView = view.findViewById(R.id.items_recycler)
 
+        title.text = "HELLO ${viewModel.getName()}, PLEASE CHOOSE YOUR DESIRED ITEMS."
+
         confirmButton.setOnClickListener{
-            val navController = findNavController()
-            navController.navigate(R.id.to_result_action)
+            processSelection()
         }
+    }
+
+    private fun processSelection() {
+        val navController = findNavController()
+        navController.navigate(R.id.to_result_action)
     }
 }
