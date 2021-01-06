@@ -40,7 +40,7 @@ class ResultAdapter(private val viewModel: MainViewModel)
         val item = possibility!!.ItemList[position]
 
         holder.resultItemName.text = item.name
-        holder.resultItemDetails.text = "VALUE: ${item.value} SIZE: ${item.size}"
+        holder.resultItemDetails.text = "VALUE: ${item.value} | SIZE: ${item.size}"
     }
 
     override fun getItemCount(): Int = possibility?.ItemList?.size ?: 0
