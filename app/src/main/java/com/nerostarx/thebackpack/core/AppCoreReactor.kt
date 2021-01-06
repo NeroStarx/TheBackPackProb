@@ -5,23 +5,23 @@ import com.nerostarx.thebackpack.model.Possibility
 
 object AppCoreReactor {
 
-    private var possibilityList: ArrayList<Possibility> = ArrayList()
+    private var possibilityList: ArrayList<Possibility>
+    = arrayListOf(Possibility(0,0, ArrayList()))
 
-    fun remplirSac(ItemList: ArrayList<Item>,PackSize: Int,possibility: Possibility)
-    :ArrayList<Possibility>{
-        if(ItemList.isNotEmpty()){
-            if(possibility.totalSize <= PackSize ){
-                val item = ItemList[0]
-                ItemList.removeAt(0)
-                remplirSac(ItemList, PackSize, possibility)
+    fun remplirSac(ItemList: ArrayList<Item>,packSize: Int,possibility: Possibility):ArrayList<Possibility>{
+        for(item: Item in ItemList){
+            val tempList = ArrayList(ItemList)
+            tempList.remove(item)
+            remplirSac(tempList,packSize,possibility)
+            if(possibility.totalSize+item.size <= packSize){
+                val tempPoss = Possibility()
+                tempPoss.totalValue = possibility.totalValue + item.value
+                tempPoss.totalSize = possibility.totalSize + item.size
+                tempPoss.ItemList.addAll(possibility.ItemList)
+                tempPoss.ItemList.add(item)
 
-                possibility.ItemList.add(item)
-                possibility.totalSize += item.size
-                possibility.totalValue += item.value
-
-                remplirSac(ItemList, PackSize, possibility)
-            }else{
-                possibilityList.add(possibility)
+                possibilityList.add(tempPoss)
+                remplirSac(tempList,packSize,tempPoss)
             }
         }
 
@@ -45,5 +45,10 @@ object AppCoreReactor {
                 return getBestPossibility(possibilities)
             }
         }
+    }
+
+    fun clearPossibilities() {
+        possibilityList.clear()
+        possibilityList.add(Possibility(0,0, ArrayList()))
     }
 }

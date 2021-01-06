@@ -17,6 +17,7 @@ class ResultAdapter(private val viewModel: MainViewModel)
     var possibility: Possibility? = null
 
     init {
+        AppCoreReactor.clearPossibilities()
         val possibilities = AppCoreReactor.remplirSac(viewModel.getSelectedItemsList()
                 ,viewModel.getPackSize(), Possibility(0,0,ArrayList()))
         possibility = AppCoreReactor.getBestPossibility(possibilities)
@@ -39,7 +40,7 @@ class ResultAdapter(private val viewModel: MainViewModel)
         val item = possibility!!.ItemList[position]
 
         holder.resultItemName.text = item.name
-        holder.resultItemDetails.text = "VALUED BY: ${item.value}/${viewModel.getPackSize()}"
+        holder.resultItemDetails.text = "VALUE: ${item.value} SIZE: ${item.size}"
     }
 
     override fun getItemCount(): Int = possibility?.ItemList?.size ?: 0
