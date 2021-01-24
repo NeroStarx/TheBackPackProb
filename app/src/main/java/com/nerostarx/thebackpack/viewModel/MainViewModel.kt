@@ -18,7 +18,17 @@ class MainViewModel: ViewModel() {
             Item("PENCIL", 5,3),
             Item("RUBBER", 5,2),
             Item("WATER", 15,10),
-            Item("TORCH", 10,8))
+            Item("TORCH", 10,8),
+            Item("PEN", 10,8),
+            Item("SKETCHBOOK", 5,10),
+            Item("SANITIZER", 10,1),
+            Item("CHARGER", 20,5),
+            Item("LAPTOP", 25,20),
+            Item("MOUSE", 8,4),
+            Item("PHONE", 25,9),
+            Item("SELFI STICK", 5,8),
+            Item("WATCH", 10,5)
+    )
 
     fun putName(newName: String){
         name = newName

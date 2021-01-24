@@ -9,8 +9,8 @@ object AppCoreReactor {
     = arrayListOf(Possibility(0,0, ArrayList()))
 
     fun remplirSac(ItemList: ArrayList<Item>,packSize: Int,possibility: Possibility):ArrayList<Possibility>{
+        val tempList = ArrayList(ItemList)
         for(item: Item in ItemList){
-            val tempList = ArrayList(ItemList)
             tempList.remove(item)
             remplirSac(tempList,packSize,possibility)
             if(possibility.totalSize+item.size <= packSize){

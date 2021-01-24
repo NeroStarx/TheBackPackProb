@@ -10,6 +10,7 @@ import com.nerostarx.thebackpack.core.AppCoreReactor
 import com.nerostarx.thebackpack.model.Item
 import com.nerostarx.thebackpack.model.Possibility
 import com.nerostarx.thebackpack.viewModel.MainViewModel
+import kotlinx.coroutines.*
 
 class ResultAdapter(private val viewModel: MainViewModel)
     :RecyclerView.Adapter<ResultAdapter.ResultHolder>() {
@@ -17,10 +18,10 @@ class ResultAdapter(private val viewModel: MainViewModel)
     var possibility: Possibility? = null
 
     init {
-        AppCoreReactor.clearPossibilities()
-        val possibilities = AppCoreReactor.remplirSac(viewModel.getSelectedItemsList()
-                ,viewModel.getPackSize(), Possibility(0,0,ArrayList()))
-        possibility = AppCoreReactor.getBestPossibility(possibilities)
+            AppCoreReactor.clearPossibilities()
+            val possibilities = AppCoreReactor.remplirSac(viewModel.getSelectedItemsList()
+                    ,viewModel.getPackSize(), Possibility(0,0,ArrayList()))
+            possibility = AppCoreReactor.getBestPossibility(possibilities)
     }
 
 
